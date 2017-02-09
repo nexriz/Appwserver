@@ -20,7 +20,7 @@ export default class LoginForm extends React.Component {
   render() {
   	const { submitForm } = this.props;
     return (
-      <div>
+      <div className="span20">
       	<form onSubmit={(e) => submitForm(e, this.state)}>
       	<ul style={{ listStyleType: 'none'}}>
       		<li>	
@@ -35,7 +35,8 @@ export default class LoginForm extends React.Component {
       		<li>
       			<input type="password" name="password" onChange={(e)=>this.handleInputChange(e)}/><br/>
       		</li>
-      		<button>Submit</button>
+          <br/>
+      		<button className="btn btn-primary">Submit</button>
       	</ul>
       	</form>
       </div>

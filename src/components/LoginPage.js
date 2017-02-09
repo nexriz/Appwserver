@@ -1,33 +1,44 @@
 import React from 'react';
-
-import axios from 'axios'
-
+import { connect } from 'react-redux'
+import { login } from './redux/actions/authActions'
 import LoginForm from './parts/LoginForm'
+import { Link } from 'react-router';
 
 
-let getAuth = axios.create({
-  baseURL: 'http://localhost:8080/api',
-  timeout: 10000,
-})
+function mapStateToProps({ auth }) {
+  return {
+    auth,
+  }
+}
 
-export default class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
   static propTypes = {
     name: React.PropTypes.string,
+    isAuth: React.PropTypes.func,
+    user: React.PropTypes.object,
+    login: React.PropTypes.func
   };
 
-  constructor(props) {
-    super(props);
-  }
-
-  Login(e, data) {
+  onSubmit(e, data) {
     e.preventDefault()
+    this.props.login(data).then()
   }
 
   render() {
+    const { isAuth, user } = this.props.auth
+    const loggedIn = (
+      <p>Welcome {user.name}</p>
+
+      )
     return (
-      <div>
-      	<LoginForm />
+      <div className="jumbotron">
+        { isAuth && loggedIn }
+        { isAuth && <Link to="/app">App</Link> }
+      	{ !isAuth && <LoginForm submitForm={this.onSubmit.bind(this)} />}
       </div>
     );
   }
 }
+
+export default connect(mapStateToProps, { login })(LoginPage)
+

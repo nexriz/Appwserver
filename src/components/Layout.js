@@ -13,9 +13,10 @@ export default class LayoutPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
       	<h1>This is a layout</h1> <time><Clock/></time>
       	<hr/>
+        
       	{this.props.children}
       </div>
     );

@@ -1,12 +1,12 @@
 import express from 'express'
 
-import AuthApi from './AuthApi'
-import UserApi from './UserApi'
+import auth from './auth'
+import user from './user'
 
 const router = express.Router()
 
-router.use('/user', UserApi)
-router.use('/auth', AuthApi)
+router.use('/user', user)
+router.use('/auth', auth)
 
 router.all('/', (req, res, next) => {
 	res.json({ message: 'available api routes', user: '/user', auth: '/auth'})

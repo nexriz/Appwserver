@@ -7,7 +7,6 @@ import cors from 'cors';
 
 import routesApi from './routes/api'
 
-import config from './config/config'
 
 const PORT = 8080
 const app = express()
