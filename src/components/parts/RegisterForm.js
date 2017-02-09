@@ -1,4 +1,13 @@
 import React from 'react';
+import axios from 'axios'
+
+let registerUser = (token) => axios.create({
+  baseURL: 'http://localhost:8080/api/user',
+  timeout: 10000,
+  headers: {
+    Authorization: 'Bearer ' + token
+  },
+})
 
 export default class RegisterForm extends React.Component {
   static propTypes = {

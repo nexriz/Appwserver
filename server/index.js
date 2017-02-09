@@ -2,6 +2,8 @@ import express from 'express'
 import path from 'path'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import cors from 'cors';
 
 import routesApi from './routes/api'
 
@@ -15,7 +17,9 @@ const app = express()
 // middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(morgan('dev'))
+app.use(cors())
 
 
 // Routes
