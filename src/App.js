@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 
-
+import LoginForm from './components/modules/LoginForm';
+import RegisterForm from './components/modules/RegisterForm';
+import Clock from './components/modules/Clock';
 
 class App extends Component {
-  render() {
 
+  submitForm(e, { username, password }) {
+    e.preventDefault();
+    console.log(username, password)
+  }
+  render() {
 
     return (
       <div className="App">
@@ -13,7 +19,9 @@ class App extends Component {
         </div>
         <p className="App-intro">
         </p>
-
+        <RegisterForm submitForm={this.submitForm.bind(this)}/>
+        <Clock />
+        <LoginForm submitForm={this.submitForm.bind(this)} />
       </div>
     );
   }
