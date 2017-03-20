@@ -1,3 +1,5 @@
+process.env.SECRET = 'test123'
+
 import express from 'express'
 import path from 'path'
 import morgan from 'morgan'
@@ -19,6 +21,7 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(morgan('dev'))
 app.use(cors())
+app.use(express.static(path.resolve(__dirname, '..', 'static')))
 
 
 // Routes
@@ -26,8 +29,8 @@ app.use('/api', routesApi)
 
 
 app.get('/*', (req, res) => {
-	res.send('hello')
-})
+	res.sendFile(path.resolve(__dirname, '..', 'static', 'index.html'))
+})	
 
 
 
